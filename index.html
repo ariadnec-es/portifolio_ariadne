@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ariadne Cecília — Portfólio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Outfit:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #faf9f6;
+      --bg2: #f4f1ec;
+      --bg3: #ede9e2;
+      --surface: #ffffff;
+      --border: #e2ddd6;
+      --accent: #3d6b4f;
+      /* verde-musgo elegante */
+      --accent2: #7a5c3f;
+      /* caramelo */
+      --accent3: #c9a87c;
+      /* dourado suave */
+      --text: #1a1a18;
+      --muted: #7a7670;
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Outfit', sans-serif;
+      --r: 10px;
+      --r-lg: 18px;
+      --shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+      --shadow-md: 0 6px 32px rgba(0, 0, 0, 0.10);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* CURSOR */
+    #cursor {
+      width: 9px;
+      height: 9px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s, height 0.2s, opacity 0.2s;
+      mix-blend-mode: multiply;
+    }
+
+    #cursor.big {
+      width: 32px;
+      height: 32px;
+      opacity: 0.4;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 56px;
+      background: rgba(250, 249, 246, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.01em;
+      color: var(--text);
+    }
+
+    .nav-logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+    }
+
+    .nav-links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      border-radius: 100px;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 130px 56px 90px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+    }
+
+    .hero-circle {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+    }
+
+    .hc1 {
+      width: 500px;
+      height: 500px;
+      background: rgba(61, 107, 79, 0.10);
+      top: -80px;
+      right: -120px;
+    }
+
+    .hc2 {
+      width: 360px;
+      height: 360px;
+      background: rgba(201, 168, 124, 0.13);
+      bottom: -60px;
+      left: -60px;
+    }
+
+    .hero-inner {
+      max-width: 860px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 36px;
+      box-shadow: var(--shadow);
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .hero-badge .dot {
+      width: 7px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2.2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .35
+      }
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7.5vw, 6.5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    .hero-name .last {
+      color: var(--accent);
+      display: block;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      animation: fadeUp 0.7s 0.18s ease both;
+    }
+
+    .hero-desc {
+      max-width: 580px;
+      margin: 0 auto 44px;
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.75;
+      font-weight: 300;
+      animation: fadeUp 0.7s 0.25s ease both;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      justify-content: center;
+      margin-bottom: 44px;
+      animation: fadeUp 0.7s 0.32s ease both;
+    }
+
+    .tag {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 5px 15px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .tag.g {
+      border-color: rgba(61, 107, 79, 0.35);
+      color: var(--accent);
+      background: rgba(61, 107, 79, 0.05);
+    }
+
+    .tag.b {
+      border-color: rgba(122, 92, 63, 0.35);
+      color: var(--accent2);
+      background: rgba(122, 92, 63, 0.05);
+    }
+
+    .tag.o {
+      border-color: rgba(201, 168, 124, 0.5);
+      color: #8a6840;
+      background: rgba(201, 168, 124, 0.08);
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      animation: fadeUp 0.7s 0.38s ease both;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      padding: 13px 30px;
+      border-radius: 100px;
+      font-size: 0.88rem;
+      transition: opacity 0.2s, transform 0.2s;
+      box-shadow: 0 4px 18px rgba(61, 107, 79, 0.25);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.88;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 1.5px solid var(--border);
+      color: var(--text);
+      font-weight: 500;
+      padding: 13px 30px;
+      border-radius: 100px;
+      font-size: 0.88rem;
+      transition: border-color 0.2s, transform 0.2s, background 0.2s;
+      background: var(--surface);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* SECTION BASE */
+    section {
+      padding: 96px 56px;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .section-sub {
+      color: var(--muted);
+      font-size: 0.97rem;
+      max-width: 520px;
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 52px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    /* SOBRE */
+    #sobre {
+      background: var(--bg2);
+    }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .sobre-photo {
+      aspect-ratio: 4/5;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-md);
+      position: relative;
+    }
+
+    .photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      color: var(--muted);
+      text-align: center;
+      padding: 32px;
+    }
+
+    .photo-icon {
+      width: 68px;
+      height: 68px;
+      border: 2px dashed var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--border);
+    }
+
+    .photo-placeholder p {
+      font-size: 0.82rem;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .photo-placeholder .hint {
+      font-size: 0.72rem;
+      color: var(--border);
+      margin-top: 4px;
+    }
+
+    .sobre-info h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+      line-height: 1.2;
+    }
+
+    .sobre-info p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 18px;
+      font-weight: 300;
+    }
+
+    /* HABILIDADES */
+    #habilidades {
+      background: var(--bg);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 26px 22px;
+      transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+      box-shadow: var(--shadow);
+    }
+
+    .skill-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+      border-color: var(--accent3);
+    }
+
+    .skill-card-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .skill-card-head .sk-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--bg2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .skill-card-head .sk-icon.b {
+      color: var(--accent2);
+    }
+
+    .skill-card-head .sk-icon.o {
+      color: #8a6840;
+    }
+
+    .skill-card h3 {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .skill-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .chip {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 0.76rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    /* EXPERIÊNCIA */
+    #experiencia {
+      background: var(--bg2);
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), var(--accent3), transparent);
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 44px;
+      opacity: 0;
+      transform: translateX(-14px);
+      transition: opacity 0.5s, transform 0.5s;
+    }
+
+    .tl-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .tl-dot {
+      position: absolute;
+      left: -32px;
+      top: 7px;
+      width: 9px;
+      height: 9px;
+      background: var(--accent);
+      border-radius: 50%;
+      border: 2px solid var(--bg2);
+      box-shadow: 0 0 0 3px rgba(61, 107, 79, 0.2);
+    }
+
+    .tl-role {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 3px;
+    }
+
+    .tl-company {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+      font-weight: 400;
+    }
+
+    .tl-list {
+      list-style: none;
+    }
+
+    .tl-list li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      padding: 4px 0 4px 20px;
+      position: relative;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .tl-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 12px;
+      width: 6px;
+      height: 1px;
+      background: var(--accent2);
+    }
+
+    /* PROJETOS */
+    #projetos {
+      background: var(--bg);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+      box-shadow: var(--shadow);
+    }
+
+    .project-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-5px);
+    }
+
+    .project-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--bg2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .img-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      text-align: center;
+      padding: 16px;
+    }
+
+    .img-placeholder .ph-icon {
+      color: var(--border);
+    }
+
+    .img-placeholder span {
+      font-size: 0.76rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .preview-label {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(250, 249, 246, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 3px 12px;
+      font-size: 0.7rem;
+      color: var(--muted);
+      backdrop-filter: blur(6px);
+    }
+
+    .project-body {
+      padding: 22px;
+    }
+
+    .project-cat {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 7px;
+    }
+
+    .project-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 9px;
+    }
+
+    .project-body p {
+      font-size: 0.87rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 14px;
+      font-weight: 300;
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .stack-tag {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 3px 9px;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
+      transition: gap 0.2s;
+    }
+
+    .project-link:hover {
+      gap: 9px;
+    }
+
+    /* ARTES */
+    #artes {
+      background: var(--bg2);
+    }
+
+    .arts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .art-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: box-shadow 0.3s, transform 0.3s;
+      box-shadow: var(--shadow);
+    }
+
+    .art-card:hover {
+      transform: scale(1.03);
+      box-shadow: var(--shadow-md);
+    }
+
+    .art-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .art-card:nth-child(1) {
+      grid-column: span 2;
+      aspect-ratio: 2/1;
+    }
+
+    .art-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--muted);
+      text-align: center;
+      padding: 20px;
+    }
+
+    .art-placeholder .ap-icon {
+      color: var(--border);
+    }
+
+    .art-placeholder span {
+      font-size: 0.74rem;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .art-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26, 26, 24, 0.6) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 14px;
+    }
+
+    .art-card:hover .art-overlay {
+      opacity: 1;
+    }
+
+    .art-overlay-text {
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    /* VÍDEOS */
+    #videos {
+      background: var(--bg);
+    }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .video-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+      box-shadow: var(--shadow);
+    }
+
+    .video-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .video-embed {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--bg2);
+      position: relative;
+    }
+
+    .video-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .play-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      color: var(--accent);
+    }
+
+    .video-placeholder:hover .play-icon {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .video-placeholder span {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .video-info {
+      padding: 18px;
+    }
+
+    .video-info h4 {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 5px;
+    }
+
+    .video-info p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* EDUCAÇÃO */
+    #educacao {
+      background: var(--bg2);
+    }
+
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 26px 22px;
+      transition: box-shadow 0.25s, transform 0.25s;
+      box-shadow: var(--shadow);
+    }
+
+    .edu-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .edu-icon {
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .edu-year {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .edu-degree {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+      line-height: 1.35;
+    }
+
+    .edu-inst {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* CONTATO */
+    #contato {
+      background: var(--bg);
+    }
+
+    .contato-inner {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .contato-inner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent3), var(--accent2));
+    }
+
+    .contato-inner h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 14px;
+    }
+
+    .contato-inner p {
+      color: var(--muted);
+      margin-bottom: 38px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 300;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 12px 22px;
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--text);
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(61, 107, 79, 0.12);
+    }
+
+    .contact-link svg {
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 28px 56px;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    footer span {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav {
+        padding: 16px 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      section {
+        padding: 64px 24px;
+      }
+
+      .sobre-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sobre-photo {
+        aspect-ratio: 1/1;
+        max-width: 280px;
+        margin: 0 auto;
+      }
+
+      .skills-grid,
+      .edu-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .projects-grid,
+      .videos-grid,
+      .arts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .art-card:nth-child(1) {
+        grid-column: span 1;
+        aspect-ratio: 1/1;
+      }
+
+      .contato-inner {
+        padding: 36px 24px;
+      }
+    }
+
+    @media (max-width: 560px) {
+
+      .skills-grid,
+      .edu-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="cursor"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Ariadne<span>.</span></div>
+    <div class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#artes">Design</a>
+      <a href="#videos">Vídeos</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <a href="https://github.com/ariadnec-es" class="nav-cta">Fale comigo</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grain"></div>
+    <div class="hero-circle hc1"></div>
+    <div class="hero-circle hc2"></div>
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Disponível para novas oportunidades
+      </div>
+      <h1 class="hero-name">
+        Ariadne
+        <span class="last">Cecília</span>
+      </h1>
+      <p class="hero-subtitle">Engenharia de Computação </p>
+      <p class="hero-desc">
+        Desenvolvedora, Técnica de Redes de Computadores e designer. Transformo problemas complexos em soluções que unem
+        técnica e criatividade.
+      </p>
+      <div class="hero-tags">
+        <span class="tag g">Python</span>
+        <span class="tag g">JS · HTML · CSS · TypeScript</span>
+        <span class="tag b">Figma · Photoshop</span>
+        <span class="tag b">Illustrator</span>
+        <span class="tag o">Identidade Visual</span>
+        <span class="tag o">Edição de Vídeo</span>
+        <span class="tag">Flutter</span>
+        <span class="tag">Redes e Infra</span>
+        <span class="tag">OBS Studio</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#projetos" class="btn-primary">Ver projetos</a>
+        <a href="https://github.com/ariadnec-es" target="_blank" class="btn-outline">GitHub</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="container">
+      <div class="sobre-grid">
+        <!--<div class="sobre-photo reveal">
+           Substitua por: <img src="foto.jpg" alt="Ariadne Cecília">
+          <div class="photo-placeholder">
+            <div class="photo-icon">
+              <i data-lucide="user" width="28" height="28"></i>
+            </div>
+            <p>Adicione sua foto aqui</p>
+            <p class="hint">Substitua este bloco por &lt;img src="foto.jpg"&gt;</p>
+          </div>
+        </div> -->
+        <div class="sobre-info reveal">
+          <span class="section-label">Quem sou</span>
+          <h2>Olá, eu sou a Ariadne</h2>
+          <p>
+            Graduanda em <strong>Engenharia de Computação</strong> pela UFRN, com background em Ciência e Tecnologia e
+            formação técnica em Redes de Computadores pelo Instituto Metrópole Digital.
+          </p>
+          <p>
+            Ao longo da minha trajetória, desenvolvi habilidades que combinam raciocínio técnico com sensibilidade
+            criativa, transitando entre desenvolvimento de sistemas, suporte e infraestrutura de TI, criação visual e
+            produção de conteúdo.
+          </p>
+          <p>
+            Atualmente sou Secretária de Finanças do Centro Acadêmico de Engenharia de Computação e Bolsista de Apoio
+            Técnico em TI na ECT/UFRN.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- HABILIDADES -->
+  <section id="habilidades">
+    <div class="container">
+      <span class="section-label">Competências</span>
+      <h2 class="section-title">Habilidades técnicas</h2>
+      <p class="section-sub">Uma combinação de desenvolvimento, infraestrutura de TI e comunicação visual.</p>
+      <div class="skills-grid">
+
+        <div class="skill-card reveal">
+          <div class="skill-card-head">
+            <div class="sk-icon"><i data-lucide="code-2" width="18" height="18"></i></div>
+            <h3>Desenvolvimento</h3>
+          </div>
+          <div class="skill-chips">
+            <span class="chip">JavaScript</span>
+            <span class="chip">TyperScript</span>
+            <span class="chip">HTML/CSS</span>
+            <span class="chip">Python</span>
+            <span class="chip">PHP</span>
+            <span class="chip">MySQL</span>
+            <span class="chip">C++</span>
+            <span class="chip">VHDL</span>
+            <span class="chip">Flutter</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-card-head">
+            <div class="sk-icon"><i data-lucide="bar-chart-2" width="18" height="18"></i></div>
+            <h3>Ciência de Dados</h3>
+          </div>
+          <div class="skill-chips">
+            <span class="chip">Numpy</span>
+            <span class="chip">Pandas</span>
+            <span class="chip">Matplotlib</span>
+            <span class="chip">SciPy</span>
+            <span class="chip">Plotly</span>
+            <span class="chip">NetworkX</span>
+            <span class="chip">OSMNX</span>
+            <span class="chip">Control</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-card-head">
+            <div class="sk-icon b"><i data-lucide="pen-tool" width="18" height="18"></i></div>
+            <h3>Design e Visual</h3>
+          </div>
+          <div class="skill-chips">
+            <span class="chip">Figma</span>
+            <span class="chip">Photoshop</span>
+            <span class="chip">Illustrator</span>
+            <span class="chip">Canva</span>
+            <span class="chip">Identidade Visual</span>
+            <span class="chip">Logotipos</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-card-head">
+            <div class="sk-icon"><i data-lucide="server" width="18" height="18"></i></div>
+            <h3>Infraestrutura e TI</h3>
+          </div>
+          <div class="skill-chips">
+            <span class="chip">Windows 7/10/11</span>
+            <span class="chip">Redes TCP/IP</span>
+            <span class="chip">GLPI</span>
+            <span class="chip">Manutenção Hardware</span>
+            <span class="chip">Datacenter</span>
+            <span class="chip">ATmega / FPGA</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-card-head">
+            <div class="sk-icon b"><i data-lucide="video" width="18" height="18"></i></div>
+            <h3>Produção de Conteúdo</h3>
+          </div>
+          <div class="skill-chips">
+            <span class="chip">OBS Studio</span>
+            <span class="chip">YouTube Studio</span>
+            <span class="chip">Sony Vegas</span>
+            <span class="chip">Transmissão ao vivo</span>
+            <span class="chip">Operação de câmera</span>
+          </div>
+        </div>
+
+        <div class="skill-card reveal">
+          <div class="skill-card-head">
+            <div class="sk-icon o"><i data-lucide="megaphone" width="18" height="18"></i></div>
+            <h3>Comunicação Institucional</h3>
+          </div>
+          <div class="skill-chips">
+            <span class="chip">Redes sociais</span>
+            <span class="chip">YouTube</span>
+            <span class="chip">Planejamento de conteúdo</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- PROJETOS -->
+  <section id="projetos">
+    <div class="container">
+      <span class="section-label">Portfólio</span>
+      <h2 class="section-title">Projetos</h2>
+      <p class="section-sub">Do hardware embarcado ao desenvolvimento web, projetos que resolvem problemas reais.</p>
+
+      <div class="projects-grid">
+
+        <!-- Site 1 -->
+        <div class="project-card reveal">
+          <div class="project-img">
+
+            <img src="./img/site1.jpeg" alt="Site 1">
+
+            <!-- <div class="img-placeholder">
+              <div class="ph-icon"><i data-lucide="globe" width="32" height="32"></i></div>
+              <span>Preview do site hospedado<br />ou screenshot</span>
+            </div>-->
+            <span class="preview-label">Ao vivo</span>
+          </div>
+          <div class="project-body">
+            <div class="project-cat">Web · Site 1</div>
+            <h3>Gerador de Questões Matemáticas no Padrão Kumon</h3>
+            <p>Descreva aqui o primeiro site hospedado: o que ele faz, para quem e qual problema resolve.</p>
+            <div class="project-stack">
+              <span class="stack-tag">HTML</span>
+              <span class="stack-tag">CSS</span>
+              <span class="stack-tag">JavaScript</span>
+            </div>
+            <a href="https://ariadnec-es.github.io/operations-generator/" class="project-link" target="_blank">
+              Ver site <i data-lucide="arrow-up-right" width="14" height="14"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Site 2 -->
+
+        <div class="project-card reveal">
+          <div class="project-img">
+
+            <img src="./img/site2.jpeg" alt="Site 2">
+
+            <!--<div class="img-placeholder">
+              <div class="ph-icon"><i data-lucide="globe" width="32" height="32"></i></div>
+              <span>Preview do site hospedado<br />ou screenshot</span>
+            </div>-->
+
+            <span class="preview-label">Ao vivo</span>
+          </div>
+          <div class="project-body">
+            <div class="project-cat">Web · Site 2</div>
+            <h3>ZionBridge</h3>
+            <p>Sistema de gerenciado de música que busca organizar o envio de repertório musical, gerenciar de playbacks
+              musicais e facilitar a comunicação entre equipes de mídia, musicos e convidados utilizando uma interface
+              simples e responsiva.</p>
+            <div class="project-stack">
+              <span class="stack-tag">CSS</span>
+              <span class="stack-tag">TyperScript</span>
+            </div>
+            <a href="https://zionbridge.netlify.app/" class="project-link" target="_blank">
+              Ver site <i data-lucide="arrow-up-right" width="14" height="14"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Comedouro Pet -->
+        <div class="project-card reveal">
+          <div class="project-img">
+            <img src="./img/img3.jpg" alt="Comedouro Pet">
+            <!--<div class="img-placeholder">
+               <div class="ph-icon"><i data-lucide="cpu" width="32" height="32"></i></div> 
+               <span>Adicione foto do projeto</span>
+            </div>-->
+          </div>
+
+          <div class="project-body">
+            <div class="project-cat">Embarcados</div>
+            <h3>Comedouro Pet Automatizado</h3>
+            <p>Sistema de automação para alimentação de animais de estimação com controle por horário e porção.</p>
+            <div class="project-stack">
+              <span class="stack-tag">C</span>
+              <span class="stack-tag">ATmega328</span>
+              <span class="stack-tag">Hardware</span>
+            </div>
+            <a href="https://github.com/ariadnec-es/ComedouroPet" class="project-link" target="_blank">
+              Ver no GitHub <i data-lucide="arrow-up-right" width="14" height="14"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Teste de Reflexo -->
+        <div class="project-card reveal">
+          <div class="project-img">
+            <img src="./img/img4.jpeg" alt="Teste de Reflexo">
+            <!--<div class="img-placeholder">
+              <div class="ph-icon"><i data-lucide="zap" width="32" height="32"></i></div>
+              <span>Adicione foto do projeto</span>
+            </div>-->
+          </div>
+          <div class="project-body">
+            <div class="project-cat">FPGA · Hardware Digital</div>
+            <h3>Teste de Reflexo</h3>
+            <p>Software para medir reflexos por estímulos visuais, desenvolvido em VHDL para FPGA Cyclone2.</p>
+            <div class="project-stack">
+              <span class="stack-tag">VHDL</span>
+              <span class="stack-tag">FPGA Cyclone2</span>
+            </div>
+            <a href="https://github.com/ariadnec-es/JogoTesteDeReflexo" class="project-link" target="_blank">
+              Ver no GitHub <i data-lucide="arrow-up-right" width="14" height="14"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Dimensionamento Viário -->
+        <div class="project-card reveal">
+          <div class="project-img">
+            <!--<div class="img-placeholder">
+              <div class="ph-icon"><i data-lucide="map" width="32" height="32"></i></div>
+              <span>Adicione gráfico ou imagem do projeto</span>
+            </div>-->
+            <img src="./img/img5.png" alt="Dimensionamento Viário">
+          </div>
+          <div class="project-body">
+            <div class="project-cat">Data Science · Python</div>
+            <h3>Dimensionamento de Infraestrutura Viária</h3>
+            <p>Script para analisar conectividade entre Pontos de Interesse em cidades, estimando a extensão mínima de
+              vias necessárias.</p>
+            <div class="project-stack">
+              <span class="stack-tag">Python</span>
+              <span class="stack-tag">OSMNX</span>
+              <span class="stack-tag">Pandas</span>
+              <span class="stack-tag">NetworkX</span>
+            </div>
+            <a href="https://github.com/ariadnec-es/Metodo_AStar_E_MST_InfraestruturaEntrePontos" class="project-link"
+              target="_blank">
+              Ver no GitHub <i data-lucide="arrow-up-right" width="14" height="14"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTES -->
+  <section id="artes">
+    <div class="container">
+      <span class="section-label">Design Gráfico</span>
+      <h2 class="section-title">Artes e Identidade Visual</h2>
+      <p class="section-sub">Logotipos, peças gráficas, estampas e materiais institucionais criados ao longo da
+        trajetória.</p>
+
+      <div class="arts-grid">
+
+        <div class="art-card reveal">
+          <!-- <img src="arte-destaque.jpg" alt="Arte destaque"> -->
+          <img src="./img/bandeira.jpeg" alt="Arte destaque">
+          <div class="art-placeholder">
+            <div class="ap-icon"><i data-lucide="image" width="28" height="28"></i></div>
+            <span>Arte em destaque (maior)<br />Substitua por &lt;img src="..."&gt;</span>
+          </div>
+          <div class="art-overlay">
+            <span class="art-overlay-text">Logotipo · CA Engenharia de Computação</span>
+          </div>
+        </div>
+
+        <div class="art-card reveal">
+          <!--<div class="art-placeholder">
+            <div class="ap-icon"><i data-lucide="pen-tool" width="24" height="24"></i></div>
+            <span>Logotipo ou identidade visual</span>
+          </div>-->
+          <img src="./img/Zion.jpeg" alt="Arte destaque">
+          <div class="art-overlay"><span class="art-overlay-text">Identidade Visual</span></div>
+        </div>
+
+        <div class="art-card reveal">
+          <!--<div class="art-placeholder">
+            <div class="ap-icon"><i data-lucide="shirt" width="24" height="24"></i></div>
+            <span>Estampa para camisa</span>
+          </div>-->
+          <img src="./img/camisa.jpeg" alt="Arte destaque">
+          <div class="art-overlay"><span class="art-overlay-text">Estampa</span></div>
+        </div>
+
+        <div class="art-card reveal">
+          <!--<div class="art-placeholder">
+            <div class="ap-icon"><i data-lucide="layout" width="24" height="24"></i></div>
+            <span>Flyer ou divulgação</span>
+          </div>-->
+          <img src="./img/Panfleto.jpg" alt="Arte destaque">
+          <div class="art-overlay"><span class="art-overlay-text">Panfleto</span></div>
+        </div>
+
+        <div class="art-card reveal">
+          <!--<div class="art-placeholder">
+            <div class="ap-icon"><i data-lucide="instagram" width="24" height="24"></i></div>
+            <span>Post para redes sociais</span>
+          </div>-->
+          <img src="./img/post.jpeg" alt="Arte destaque">
+          <div class="art-overlay"><span class="art-overlay-text">Social Media</span></div>
+        </div>
+
+        <div class="art-card reveal">
+          <!--<div class="art-placeholder">
+            <div class="ap-icon"><i data-lucide="file-text" width="24" height="24"></i></div>
+            <span>Cartão ou material impresso</span>
+          </div>-->
+          <img src="./img/cardapio.jpeg" alt="Arte destaque">
+          <div class="art-overlay"><span class="art-overlay-text">Material Impresso</span></div>
+        </div>
+
+        <div class="art-card reveal">
+          <!--<div class="art-placeholder">
+            <div class="ap-icon"><i data-lucide="monitor" width="24" height="24"></i></div>
+            <span>Arte digital</span>
+          </div>-->
+          <img src="./img/ArteDigital.jpg" alt="Arte destaque">
+          <div class="art-overlay"><span class="art-overlay-text">Arte Digital</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VÍDEOS -->
+  <section id="videos">
+    <div class="container">
+      <span class="section-label">Conteúdo Audiovisual</span>
+      <h2 class="section-title">Produções em Vídeo</h2>
+      <p class="section-sub">Transmissões ao vivo, vídeos institucionais e produções audiovisuais.</p>
+
+      <div class="videos-grid">
+
+        <div class="video-card reveal">
+          <div class="video-embed">
+            <div class="video-placeholder" tabindex="0" role="button"
+              aria-label="Carregar vídeo: Publicidade da DeveloperAction"
+              onclick="loadVideo(this, 'https://youtube.com/shorts/r4A3Tn76t28')">
+              <div class="play-icon"><i data-lucide="play" width="18" height="18"></i></div>
+              <span>Clique para carregar</span>
+            </div>
+          </div>
+          <div class="video-info">
+            <h4>Publicidade da DeveloperAction</h4>
+            <p>Divulgação da empresa e seus serviços.</p>
+          </div>
+        </div>
+
+        <!--<div class="video-card reveal">
+          <div class="video-embed">
+            <div class="video-placeholder" onclick="loadVideo(this, 'YOUTUBE_ID_2')">
+              <div class="play-icon"><i data-lucide="play" width="18" height="18"></i></div>
+              <span>Clique para carregar</span>
+            </div>
+          </div>
+          <div class="video-info">
+            <h4>Título do Vídeo 2</h4>
+            <p>Descrição breve do evento ou produção.</p>
+          </div>
+        </div>
+
+        <div class="video-card reveal">
+          <div class="video-embed">
+            <div class="video-placeholder" onclick="loadVideo(this, 'YOUTUBE_ID_3')">
+              <div class="play-icon"><i data-lucide="play" width="18" height="18"></i></div>
+              <span>Clique para carregar</span>
+            </div>
+          </div>
+          <div class="video-info">
+            <h4>Título do Vídeo 3</h4>
+            <p>Descrição breve do evento ou produção.</p>
+          </div>
+        </div>-->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCAÇÃO -->
+  <section id="educacao">
+    <div class="container">
+      <span class="section-label">Formação</span>
+      <h2 class="section-title">Educação</h2>
+      <p class="section-sub">Base técnica sólida com foco em tecnologia e inovação.</p>
+
+      <div class="edu-grid">
+        <div class="edu-card reveal">
+          <div class="edu-icon"><i data-lucide="graduation-cap" width="22" height="22"></i></div>
+          <div class="edu-year">2024 · em curso</div>
+          <div class="edu-degree">Graduanda em Engenharia de Computação</div>
+          <div class="edu-inst">Universidade Federal do Rio Grande do Norte · UFRN</div>
+        </div>
+        <div class="edu-card reveal">
+          <div class="edu-icon"><i data-lucide="graduation-cap" width="22" height="22"></i></div>
+          <div class="edu-year">2024</div>
+          <div class="edu-degree">Graduada em Ciência e Tecnologia</div>
+          <div class="edu-inst">Universidade Federal do Rio Grande do Norte · UFRN</div>
+        </div>
+        <div class="edu-card reveal">
+          <div class="edu-icon"><i data-lucide="network" width="22" height="22"></i></div>
+          <div class="edu-year">2019</div>
+          <div class="edu-degree">Técnica em Redes de Computadores</div>
+          <div class="edu-inst">Instituto Metrópole Digital · IMD</div>
+        </div>
+      </div>
+
+      <div style="margin-top:22px;" class="reveal">
+        <div class="skill-card"
+          style="display:inline-flex;align-items:center;gap:16px;padding:18px 26px;border-radius:var(--r-lg);">
+          <div style="color:var(--accent);"><i data-lucide="award" width="22" height="22"></i></div>
+          <div>
+            <div
+              style="font-size:0.7rem;color:var(--accent);font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;">
+              Certificação</div>
+            <div style="font-family:var(--font-display);font-weight:700;font-size:0.98rem;margin-bottom:3px;">DataCamp
+              AI Fundamentals</div>
+            <a href="https://www.datacamp.com/skill-verification/AIF0024048137968"
+              style="font-size:0.78rem;color:var(--muted);text-decoration:underline;" target="_blank"
+              rel="noopener noreferrer">Ver
+              certificado</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato">
+    <div class="container">
+      <div class="contato-inner reveal">
+        <h2>Vamos conversar?</h2>
+        <p>Estou disponível para projetos e colaborações. Me manda uma mensagem.</p>
+        <div class="contact-links">
+          <a href="mailto:ariadneces@gmail.com" class="contact-link">
+            <i data-lucide="mail" width="16" height="16"></i>
+            ariadneces@gmail.com
+          </a>
+          <a href="https://github.com/ariadnec-es" target="_blank" class="contact-link">
+            <i data-lucide="github" width="16" height="16"></i>
+            github.com/ariadnec-es
+          </a>
+          <!--
+        Descomente quando quiser adicionar Behance ou LinkedIn:
+        <a href="https://behance.net/SEU-PERFIL" target="_blank" class="contact-link">
+          <i data-lucide="palette" width="16" height="16"></i> Behance
+        </a>
+        <a href="https://linkedin.com/in/SEU-PERFIL" target="_blank" class="contact-link">
+          <i data-lucide="linkedin" width="16" height="16"></i> LinkedIn
+        </a>
+        -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Feito por <span>Ariadne Cecília</span> · Natal, RN</p>
+  </footer>
+
+  <script>
+    // Lucide icons
+    lucide.createIcons();
+
+    // Cursor
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+    document.querySelectorAll('a, button, .art-card, .project-card, .video-card').forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal, .tl-item').forEach(el => observer.observe(el));
+
+    // Stagger
+    document.querySelectorAll('.skills-grid .skill-card, .projects-grid .project-card, .arts-grid .art-card, .videos-grid .video-card, .edu-grid .edu-card').forEach((el, i) => {
+      el.style.transitionDelay = (i * 0.07) + 's';
+    });
+
+    // Vídeos YouTube
+    function loadVideo(placeholder, videoRef) {
+      if (!videoRef) return;
+      let videoId = '';
+      try {
+        const url = new URL(videoRef);
+        if (url.hostname.includes('youtu.be')) {
+          videoId = url.pathname.slice(1);
+        } else if (url.pathname.startsWith('/shorts/')) {
+          videoId = url.pathname.split('/shorts/')[1].split('/')[0];
+        } else {
+          videoId = url.searchParams.get('v') || url.pathname.split('/').pop();
+        }
+      } catch (e) {
+        videoId = videoRef; // já é um ID
+      }
+      if (!videoId || videoId.startsWith('YOUTUBE_ID')) {
+        alert('Substitua YOUTUBE_ID_* pelo ID real do vídeo no YouTube.');
+        return;
+      }
+      const wrapper = placeholder.parentElement;
+      const card = placeholder.closest('.video-card');
+      const titleText = (card && card.querySelector('.video-info h4')) ? card.querySelector('.video-info h4').textContent.trim() : 'Vídeo do YouTube';
+      const isShort = (typeof videoRef === 'string' && videoRef.includes('/shorts/')) || (typeof videoRef === 'string' && /\/shorts\//.test(videoRef));
+
+      // Cria contêiner do player com botão de fechar (acessível)
+      const playerWrap = document.createElement('div');
+      playerWrap.className = 'video-player';
+      playerWrap.style.cssText = 'width:100%;height:100%;position:relative;';
+
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.setAttribute('title', titleText);
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.style.cssText = 'width:100%;height:100%;border:none;display:block;';
+
+      const btnClose = document.createElement('button');
+      btnClose.className = 'video-close';
+      btnClose.type = 'button';
+      btnClose.setAttribute('aria-label', 'Fechar vídeo');
+      btnClose.style.cssText = 'position:absolute;top:8px;right:8px;background:rgba(0,0,0,0.6);color:#fff;border:none;border-radius:6px;padding:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;';
+      btnClose.innerHTML = '<i data-lucide="x" width="16" height="16"></i>';
+      // salva proporção anterior e ajusta se for Short (vertical)
+      const prevAspect = wrapper.style.aspectRatio || '';
+      if (isShort) wrapper.style.aspectRatio = '9/16';
+
+      btnClose.addEventListener('click', () => {
+        // restaura placeholder
+        const original = placeholder.cloneNode(true);
+        // re-attach keyboard handler
+        original.addEventListener('keydown', placeholderKeydownHandler);
+        original.addEventListener('click', () => loadVideo(original, videoRef));
+        wrapper.replaceChild(original, playerWrap);
+        // restaura proporção
+        wrapper.style.aspectRatio = prevAspect;
+        lucide.createIcons();
+      });
+
+      playerWrap.appendChild(iframe);
+      playerWrap.appendChild(btnClose);
+
+      // substitui placeholder pelo player
+      wrapper.replaceChild(playerWrap, placeholder);
+      lucide.createIcons();
+    }
+
+    // Handler para ativar com Enter/Espaço
+    function placeholderKeydownHandler(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        loadVideo(e.currentTarget, e.currentTarget.getAttribute('data-video') || e.currentTarget.getAttribute('onclick')?.match(/'([^']+)'/)?.[1]);
+      }
+    }
+
+    // Adiciona listeners nos placeholders existentes (caso dinâmico)
+    document.querySelectorAll('.video-placeholder').forEach(ph => {
+      ph.addEventListener('keydown', placeholderKeydownHandler);
+      // store video url in data attribute for easier access
+      const onclick = ph.getAttribute('onclick');
+      if (onclick) {
+        const m = onclick.match(/'([^']+)'/);
+        if (m) ph.setAttribute('data-video', m[1]);
+      }
+    });
+
+    // Nav ativo
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+      navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : ''; });
+    }, { passive: true });
+  </script>
+</body>
+
+</html>
